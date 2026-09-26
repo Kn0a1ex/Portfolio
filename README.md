@@ -5,7 +5,7 @@ from `main` by `.github/workflows/pages.yml`.
 
 ## Editing
 
-- `index.html` holds all the copy. Search for `TODO(alex)` for the bio, avatar, and contact spots.
+- `index.html` holds all the copy. The optional avatar is a commented-out `<img>` marked `TODO(alex)` in the About section.
 - `css/style.css` has the theme tokens at the top under `:root`.
 - `js/main.js` does the mobile nav, footer year, and reveal-on-scroll. The page works with JS disabled.
 
