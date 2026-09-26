@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alex (Kn0a1ex) — Developer</title>
+  <meta name="description" content="Alex (Kn0a1ex / Lex): self-taught developer. Python, Go, C#, GDScript. Real-time signal processing, trading bots, self-hosted web apps, game mods. Available for freelance coding and scripting work.">
+  <meta name="theme-color" content="#0b0e14">
+  <meta property="og:title" content="Alex (Kn0a1ex) — Developer">
+  <meta property="og:description" content="Self-taught developer. Real-time REM detection, a risk-gated crypto grid bot, a self-hosted coaching site with a Go desktop client. Available for freelance work.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#work">Skip to work</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">&gt;_</span> kn0a1ex</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links">
+        <span class="sr-only">Menu</span>
+        <span class="nav-toggle-bar" aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#work">Work</a></li>
+        <li><a href="#also">Games &amp; coaching</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact" class="nav-cta">Hire me</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero container">
+      <p class="eyebrow">Alex &middot; also Kn0a1ex, Lex</p>
+      <h1>I build software that has to be right when nobody is watching.</h1>
+      <p class="lead">
+        Self-taught developer. Real-time signal processing, trading automation with hard risk rules,
+        self-hosted web apps with a proper security review. I ship with tests, CI, and honest numbers.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Work with me</a>
+        <a class="btn btn-ghost" href="https://github.com/Kn0a1ex" rel="me noopener" target="_blank">GitHub</a>
+      </div>
+      <ul class="hero-facts" aria-label="Quick facts">
+        <li><span class="mono">Python</span> <span class="mono">Go</span> <span class="mono">C#</span> <span class="mono">GDScript</span></li>
+        <li>FastAPI &middot; Postgres &middot; Docker &middot; GitHub Actions</li>
+        <li>Available for freelance scripting, automation, and web work</li>
+      </ul>
+    </section>
+
+    <!-- SELECTED WORK -->
+    <section class="section container" id="work">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p>Three projects, each with a specific claim you can check.</p>
+      </div>
+
+      <article class="project">
+        <div class="project-meta">
+          <span class="project-index mono">01</span>
+          <ul class="tags" aria-label="Stack">
+            <li>Python</li><li>NumPy / SciPy</li><li>scikit-learn</li><li>MNE</li>
+          </ul>
+        </div>
+        <div class="project-body">
+          <h3>remdetect <span class="project-sub">causal REM sleep detector</span></h3>
+          <p class="project-tagline">
+            A real-time-valid REM detector for a closed-loop lucid-dream project, benchmarked on
+            expert-scored Sleep-EDF polysomnography. Every feature and decision for epoch <em>t</em> uses
+            only epochs <em>0..t</em>, because at 4 a.m. the system only has the past.
+          </p>
+          <ul class="project-points">
+            <li><strong>Causal by construction, enforced by test.</strong> Expanding-window normalisation, lag-only features, and a forward-only state machine with hysteresis. A causality test destroys future data and asserts past outputs are bit-identical.</li>
+            <li><strong>Subject-wise cross-validation.</strong> GroupKFold on subject ID so the same sleeper never appears in train and test. EEG is close to a biometric; mixing subjects inflates scores and means nothing.</li>
+            <li><strong>A locked holdout that makes self-fooling a deliberate act.</strong> Deterministic hash-based dev/test split, and every test-set run is appended to an audit log with a config hash. If the audit shows one config, the number is clean. If it shows nine, the tool says so.</li>
+            <li><strong>Reports the failing configuration too.</strong> The wearable-realistic EEG-only setup misses the false-positive target on real data. That result is left in and diagnosed, not tuned away.</li>
+          </ul>
+          <p class="project-links">
+            <span class="link-note">Source: private for now, available on request.</span>
+          </p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-meta">
+          <span class="project-index mono">02</span>
+          <ul class="tags" aria-label="Stack">
+            <li>Python 3.12</li><li>ccxt</li><li>FastAPI</li><li>SQLite</li><li>Docker</li><li>Telegram</li>
+          </ul>
+        </div>
+        <div class="project-body">
+          <h3>crypto-grid-bot <span class="project-sub">risk-gated grid trading</span></h3>
+          <p class="project-tagline">
+            A grid-trading bot for the Crypto.com Exchange (ADA/USDT) with a paper-trading simulator on live
+            prices, a web dashboard, Telegram alerts and commands, crash-safe SQLite state reconciliation,
+            and a backtester that was built to prove the strategy wrong before trusting it.
+          </p>
+          <ul class="project-points">
+            <li><strong>Hard risk rules, not vibes.</strong> A reserve floor that keeps both assets above a share of equity even during emergency exits, a 100-day trend gate that parks the bot in cash below trend, a daily loss limit, per-order size caps, and a crash-floor stop.</li>
+            <li><strong>Walk-forward backtest that killed the headline number.</strong> Cross-checking the fast backtester against the production Decimal engine caught two bugs (a re-armed buy not reserving cash, a sell not removing inventory) that had inflated returns 5 to 10x. Both are pinned as regression tests.</li>
+            <li><strong>Honest out-of-sample reporting.</strong> Parameters were swept on a train window and re-evaluated on a held-out test window. The README says plainly where the strategy still trails buy-and-hold and why grid trading caps upside in a strong uptrend.</li>
+            <li><strong>Trend gate result in walk-forward tests:</strong> max drawdown 64% to 23%, bear-phase return from -28% to +18%.</li>
+          </ul>
+          <p class="project-links">
+            <span class="link-note">Source: private for now, available on request.</span>
+          </p>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="project-meta">
+          <span class="project-index mono">03</span>
+          <ul class="tags" aria-label="Stack">
+            <li>Python / FastAPI</li><li>Postgres</li><li>Alembic</li><li>Go / Wails</li><li>Docker / Traefik</li><li>GitHub Actions</li>
+          </ul>
+        </div>
+        <div class="project-body">
+          <h3>kovaaks-team-tracker <span class="project-sub">self-hosted stats and coaching site</span></h3>
+          <p class="project-tagline">
+            Ingests KovaaK's aim-trainer run files from every player on my six-person team, normalises them
+            against Voltaic benchmarks, and tells each player what to train next. Live at
+            <a href="https://aim.xebyte.com" rel="noopener" target="_blank">aim.xebyte.com</a>, with a
+            companion Windows desktop client written in Go that syncs runs automatically.
+          </p>
+          <ul class="project-points">
+            <li><strong>Security review before first deploy, with regression tests.</strong> Cross-origin request forgery protection that goes beyond SameSite because the host shares a domain with about 30 other services. Startup refuses an unsafe production config rather than trusting the operator to flip a flag.</li>
+            <li><strong>Fixed a real zip-bomb path.</strong> Upload expansion was capped after the list was built, so the cap protected nothing. Bounds now apply during the walk and the read goes through a size-limited stream, so a member that lies about its size costs a buffer, not its true size.</li>
+            <li><strong>Desktop sign-in hardened.</strong> The OAuth loopback port is bound to the OAuth state, and the Go client rejects any callback whose nonce doesn't match under a constant-time compare.</li>
+            <li><strong>Boring reliability.</strong> CI on every push, a migration-drift test that fails when models and Alembic disagree, a pinned dependency lockfile, off-box nightly database backups, and Discord announcements that can't be turned into a server-wide ping by a crafted scenario name.</li>
+          </ul>
+          <p class="project-links">
+            <a class="link" href="https://aim.xebyte.com" rel="noopener" target="_blank">Live site</a>
+            <span class="link-note">Source: private (team data), walkthrough on request.</span>
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- GAMES AND COACHING -->
+    <section class="section section-alt" id="also">
+      <div class="container">
+        <div class="section-head">
+          <h2>Also building</h2>
+          <p>Game dev and esports coaching. Same habits, different problems.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>slime-boy</h3>
+            <p class="card-kicker">Godot 4 &middot; GDScript</p>
+            <p>A metroidvania-lite about a slime that slowly evolves into a humanoid. Current milestone is one polished room, because the run and jump have to feel great before anything else gets built.</p>
+          </article>
+
+          <article class="card">
+            <h3>project-rabbit</h3>
+            <p class="card-kicker">Godot 4 &middot; GDScript &middot; Aseprite</p>
+            <p>A relaxing top-down farm idle game. Crops grow while you're away. Planned as free-to-play with cosmetics only, no pay-to-progress and no time-pressure dark patterns.</p>
+          </article>
+
+          <article class="card">
+            <h3>stardew-multifarm</h3>
+            <p class="card-kicker">C# &middot; SMAPI</p>
+            <p>A Stardew Valley multiplayer mod where each of up to eight players gets a private farm of any type, joined through three shared Farm Hubs that replace the vanilla map connections.</p>
+            <p class="card-links"><a class="link" href="https://github.com/Kn0a1ex/stardew-multifarm" rel="noopener" target="_blank">Source on GitHub</a></p>
+          </article>
+
+          <article class="card">
+            <h3>Vanablade</h3>
+            <p class="card-kicker">C# &middot; BepInEx &middot; Jotunn</p>
+            <p>A Valheim RPG overhaul: a branching talent tree, dual wielding that reuses the game's own animation rig, one-handed two-handers, and per-character stats saved into the character file.</p>
+          </article>
+
+          <article class="card card-wide">
+            <h3>Overwatch 2 tank coaching</h3>
+            <p class="card-kicker">Scholastic esports</p>
+            <p>Tank coach for a scholastic Overwatch 2 team. The KovaaK's tracker above came out of the same coaching work: measure what players actually do, then tell them what to train next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section container" id="about">
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+      <div class="about">
+        <!-- TODO(alex): optional headshot/avatar. Drop an image at assets/avatar.jpg and uncomment:
+        <img class="avatar" src="assets/avatar.jpg" alt="Alex" width="160" height="160">
+        -->
+        <div class="about-text">
+          <!-- TODO(alex): replace this paragraph with your own bio blurb. Everything below is drawn from the projects, nothing invented. -->
+          <p>
+            I'm Alex, 18, self-taught. I write Python for anything that touches data or the web, Go when
+            I need a small fast binary, C# for game mods, and GDScript in Godot. Most of what I build is
+            for a real user I can talk to: my team, myself, or a client.
+          </p>
+          <p>
+            The thread through all of it: measure honestly, test the thing that would embarrass you, and
+            write down why. If a number looks too good, I go looking for the leak.
+          </p>
+          <h3 class="about-sub">What I can do for you</h3>
+          <ul class="checklist">
+            <li>Scripts and automation: data pipelines, scrapers, bots, scheduled jobs</li>
+            <li>Backends and small web apps: FastAPI, Postgres, auth, Docker deploys</li>
+            <li>Desktop utilities: Go/Wails tray apps, Windows tooling</li>
+            <li>Game mods and tooling: Stardew (SMAPI), Valheim (BepInEx), Godot</li>
+            <li>Backtests and analysis you can trust, with the caveats stated</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section section-alt" id="contact">
+      <div class="container contact">
+        <h2>Let's build something</h2>
+        <p class="lead">
+          Freelance coding and scripting work, fixed-scope or hourly. Tell me what you need and what
+          "done" looks like, and I'll tell you honestly whether I'm the right person for it.
+        </p>
+        <div class="contact-actions">
+          <!-- TODO(alex): add your contact method. Example:
+          <a class="btn btn-primary" href="mailto:you@example.com">Email me</a>
+          -->
+          <a class="btn btn-primary" href="https://github.com/Kn0a1ex" rel="me noopener" target="_blank">GitHub &middot; Kn0a1ex</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>&copy; <span id="year"></span> Alex (Kn0a1ex). Static site, no tracking.</p>
+      <p><a class="link" href="https://github.com/Kn0a1ex/Portfolio" rel="noopener" target="_blank">Site source</a></p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
